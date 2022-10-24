@@ -1,0 +1,11 @@
+CREATE TABLE product(
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    price DOUBLE(11,2) NOT NULL,
+    amount INT(11),
+    name VARCHAR(200) NOT NULL,
+    image VARCHAR(200) NOT NULL,
+    descr TEXT(1500) NOT NULL,
+    category VARCHAR(30) NOT NULL,
+    barcode INT(15),
+    FOREIGN KEY ('barcode') REFERENCES `item` ('barcode') ON DELETE NO ACTION ON UPDATE NO ACTION
+);
