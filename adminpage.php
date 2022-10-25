@@ -1,1 +1,13 @@
-<h2>bruh</h2>
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Page</title>
+    </head>
+    <body>
+        <h1>adminpage</h1>
+        <!-- admin stuff -->
+    </body>
+</html>

@@ -70,6 +70,7 @@
 
                 if($row['user_type'] == '1'){
                     // relocate to admin page after log in
+
                     header("location: adminpage.php");
                 }
                 else{
