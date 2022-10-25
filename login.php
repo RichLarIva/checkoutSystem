@@ -1,3 +1,46 @@
+<?php 
+session_start(); 
+include 'config.php';
+
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+        header("location: profile.php");
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
+    $usersPasswrd = "SELECT * FROM Accounts WHERE username='$username'";
+    $res = mysqli_query($conn, $usersPasswrd);
+    $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+    if(password_verify($_POST['password'],$row['passwrd'])){
+        $_SESSION["user_type"] = $row['user_type'];
+        $_SESSION["loggedin"] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['id'] = $row['id'];
+        
+        if($row['user_type'] == 1){
+            // relocate to admin page after log in
+            $_SESSION['isAdmin'] = true;
+            header("Location: adminpage.php");die();
+        }
+        else{
+            // relocate to normal user page
+            $_SESSION['isAdmin'] = false;
+            header("location: index.php");die();
+        }
+    }
+    else{
+        // show some error message
+        echo "Wrong password";
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,85 +52,23 @@
     <title>Login</title>
 </head>
 <body>
-    <?php
-        // include 'navbar.php';
-    ?>
+    <?php include 'navbar.php'; ?>
+    <div class="container">
+        <form action="" method="POST" class="formcont">
+            <h1 class="form-h1">Log in</h1>
+            <hr class="form-hr">
+            <div class="formbox">
+                <label for="username" class="formlabel">Username:</label>
+                <input type="text" class="forminput" name="username">
+            </div>
 
-    <form action="#" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username">
-        
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-
-        <input type="submit" name="login">
-    </form>
-
-    <?php
-        include 'config.php';
-
-        
-        // $splAccounts = "CREATE TABLE Accounts (
-        //     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        //     username VARCHAR(50) NOT NULL UNIQUE KEY,
-        //     user_type TINYINT(1) DEFAULT(0),
-        //     passwrd VARCHAR(250) NOT NULL,
-        //     email VARCHAR(100) NOT NULL,
-        //     reg_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        // )";
-
-        // if(mysqli_query($conn, $splAccounts)){
-        //     echo "table created :)";
-        // }
-        // else{
-        //     echo "no table created :(";
-        // }
-        
-        // $splregAccount = "INSERT INTO Accounts (Username, User_Type, Passwrd, Email) VALUES ('testAccount', '1', 'password123', 'test@bruhmail.com')";
-        
-        // if(mysqli_query($conn, $splregAccount)){
-        //     echo "account created :)";
-        // }
-        // else{
-        //     echo "no account created :(";
-        // }
-
-        if(!isset($_POST['username'], $_POST['password'])){
-            exit('Username or Password is emtpy.');
-        }
-
-        if(isset($_POST['login'])){
-            $username = $_POST['username'];
-            $usersPasswrd = "SELECT * FROM Accounts WHERE username='$username'";
-            $res = mysqli_query($conn, $usersPasswrd);
-            $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
-
-            // print_r($row);
-            // print_r($_POST['password'] ."<br>". $row['passwrd']);
-
-            // remember to use password_verify() when the passwords get hashed later
-            if($_POST['password'] == $row['passwrd']){
-
-                if($row['user_type'] == '1'){
-                    // relocate to admin page after log in
-
-                    header("location: adminpage.php");
-                }
-                else{
-                    // relocate to normal user page
-                    echo "hello user";
-                }
-            }
-            else{
-                // show some error message
-                echo "Wrong password";
-            }
-
-        }
-
-
-    
-    ?>
-
+            <div class="formbox">
+                <label for="password" class="formlabel">Password:</label>
+                <input type="password" class="forminput" name="password">
+            </div>
+            <div class="formbox"><input type="submit" class="forminput" name="login"></div>
+            <p class="register-para">Don't have an account? <a href="registerAccount.php">Register here!</a></p>
+        </form>
+    </div>
 </body>
 </html>
