@@ -6,8 +6,8 @@ include 'config.php';
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
-        header("location: profile.php");
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+    header("location: profile.php");
 if(isset($_POST['login'])){
     $username = $_POST['username'];
     $usersPasswrd = "SELECT * FROM Accounts WHERE username='$username'";

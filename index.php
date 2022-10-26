@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
     <title>Butik</title>
+    
 </head>
 <body onload="document.getElementById('defaultOpen').click();">
 
@@ -34,12 +35,9 @@
             while($product = mysqli_fetch_assoc($result)){
                 echo "<div class='produkt'> 
                     <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                    <div class='produktinfo'>
                         <h3 class='produktnamn'>".$product["name"]."</h3>
                         <h4 class='produktpris'>".$product["price"].":-</h4>
-                    </div>
                     <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                    <hr>
                     <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
                     <button class='update'>Update</button>
                     </div>";
@@ -57,12 +55,9 @@
             while($product = mysqli_fetch_assoc($result)){
                 echo "<div class='produkt'> 
                     <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                    <div class='produktinfo'>
                         <h3 class='produktnamn'>".$product["name"]."</h3>
                         <h4 class='produktpris'>".$product["price"].":-</h4>
-                    </div>
                     <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                    <hr>
                     <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
                     <button class='update'>Update</button>
                     </div>";
@@ -80,12 +75,9 @@
             while($product = mysqli_fetch_assoc($result)){
                 echo "<div class='produkt'> 
                     <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                    <div class='produktinfo'>
                         <h3 class='produktnamn'>".$product["name"]."</h3>
                         <h4 class='produktpris'>".$product["price"].":-</h4>
-                    </div>
                     <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                    <hr>
                     <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
                     <button class='update'>Update</button>
                     </div>";
@@ -103,12 +95,9 @@
             while($product = mysqli_fetch_assoc($result)){
                 echo "<div class='produkt'> 
                     <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                    <div class='produktinfo'>
                         <h3 class='produktnamn'>".$product["name"]."</h3>
                         <h4 class='produktpris'>".$product["price"].":-</h4>
-                    </div>
                     <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                    <hr>
                     <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
                     <button class='update'>Update</button>
                     </div>";
@@ -126,12 +115,9 @@
             while($product = mysqli_fetch_assoc($result)){
                 echo "<div class='produkt'> 
                     <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                    <div class='produktinfo'>
                         <h3 class='produktnamn'>".$product["name"]."</h3>
                         <h4 class='produktpris'>".$product["price"].":-</h4>
-                    </div>
                     <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                    <hr>
                     <p class='productDesc'>".$product["descr"]."</p>
                     <button class='update'>Update</button>
                     </div>";

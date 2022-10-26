@@ -18,17 +18,17 @@
             <hr class="form-hr">
             <div class="formbox">
                 <label for="username" class="formlabel">Username:</label><br>
-                <input type="text" class="forminput" name="username"><br>
+                <input type="text" class="forminput" name="username" minlength="4" maxlength="30" required><br>
             </div>
             
             <div class="formbox">
                 <label for="email" class="formlabel">Email:</label><br>
-                <input type="text" class="forminput" name="email"><br>
+                <input type="text" class="forminput" name="email" required><br>
             </div>
 
             <div class="formbox">
                 <label for="password" class="formlabel">Password:</label><br>
-                <input type="password" class="forminput" name="password"><br>
+                <input type="password" class="forminput" name="password" required><br>
             </div>
 
             <div class="formbox"><input type="submit" class="forminput" name="reg" value="Create Account"></div>
