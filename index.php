@@ -27,79 +27,117 @@
 
     <div id="Godis" class="tabcontent">
         <div class="flex-lager">
-            <div class="produkt">
-                <img class="produktbild" src="images/kexchoklad.jpeg" alt="produktbild">
-                <div class="produktinfo">
-                    <h3 class="produktnamn">Kexchocklad</h3>
-                    <h3 class="produktpris">5:-</h3>
-                </div>
-                <h3 class="produktantal">Stock: 22</h3>
-                <button class="update">Update</button>
-            </div>
-
-            <div class="produkt">
-                <img class="produktbild" src="images/kexchoklad.jpeg" alt="produktbild">
-                <div class="produktinfo">
-                    <h3 class="produktnamn">Kexchocklad</h3>
-                    <h3 class="produktpris">5:-</h3>
-                </div>
-                <h3 class="produktantal">Stock: 22</h3>
-                <button class="update">Update</button>
-            </div>     
-
-            <div class="produkt">
-                <img class="produktbild" src="images/kexchoklad.jpeg" alt="produktbild">
-                <div class="produktinfo">
-                    <h3 class="produktnamn">Kexchocklad</h3>
-                    <h3 class="produktpris">5:-</h3>
-                </div>
-                <h3 class="produktantal">Stock: 22</h3>
-                <button class="update">Update</button>
-            </div>     
-
-            <div class="produkt">
-                <img class="produktbild" src="images/kexchoklad.jpeg" alt="produktbild">
-                <div class="produktinfo">
-                    <h3 class="produktnamn">Kexchocklad</h3>
-                    <h3 class="produktpris">5:-</h3>
-                </div>
-                <h3 class="produktantal">Stock: 22</h3>
-                <button class="update">Update</button>
-            </div>    
-
-            <div class="produkt">
-                <img class="produktbild" src="images/kexchoklad.jpeg" alt="produktbild">
-                <div class="produktinfo">
-                    <h3 class="produktnamn">Kexchocklad</h3>
-                    <h3 class="produktpris">5:-</h3>
-                </div>
-                <h3 class="produktantal">Stock: 22</h3>
-                <button class="update">Update</button>
-            </div>
+        <?php
+            require "config.php";
+            $sql = "SELECT * FROM product WHERE category = 'candy'";
+            $result = $conn->query($sql);
+            while($product = mysqli_fetch_assoc($result)){
+                echo "<div class='produkt'> 
+                    <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                    <div class='produktinfo'>
+                        <h3 class='produktnamn'>".$product["name"]."</h3>
+                        <h4 class='produktpris'>".$product["price"].":-</h4>
+                    </div>
+                    <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                    <hr>
+                    <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
+                    <button class='update'>Update</button>
+                    </div>";
+            }
+        ?>
         </div>
     </div>
 
     <div id="Chips" class="tabcontent">
         <div class="flex-lager">
-            <h3>Tomt</h3>
+        <?php
+            require "config.php";
+            $sql = "SELECT * FROM product WHERE category = 'chips'";
+            $result = $conn->query($sql);
+            while($product = mysqli_fetch_assoc($result)){
+                echo "<div class='produkt'> 
+                    <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                    <div class='produktinfo'>
+                        <h3 class='produktnamn'>".$product["name"]."</h3>
+                        <h4 class='produktpris'>".$product["price"].":-</h4>
+                    </div>
+                    <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                    <hr>
+                    <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
+                    <button class='update'>Update</button>
+                    </div>";
+            }
+        ?>
         </div>  
     </div>
 
     <div id="Dryck" class="tabcontent">
         <div class="flex-lager">
-            <h3>Tomt</h3>
+        <?php
+            require "config.php";
+            $sql = "SELECT * FROM product WHERE category = 'drinks'";
+            $result = $conn->query($sql);
+            while($product = mysqli_fetch_assoc($result)){
+                echo "<div class='produkt'> 
+                    <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                    <div class='produktinfo'>
+                        <h3 class='produktnamn'>".$product["name"]."</h3>
+                        <h4 class='produktpris'>".$product["price"].":-</h4>
+                    </div>
+                    <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                    <hr>
+                    <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
+                    <button class='update'>Update</button>
+                    </div>";
+            }
+        ?>
         </div>    
     </div>
 
     <div id="Frukt" class="tabcontent">
         <div class="flex-lager">
-            <h3>Tomt</h3>
+        <?php
+            require "config.php";
+            $sql = "SELECT * FROM product WHERE category = 'fruit'";
+            $result = $conn->query($sql);
+            while($product = mysqli_fetch_assoc($result)){
+                echo "<div class='produkt'> 
+                    <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                    <div class='produktinfo'>
+                        <h3 class='produktnamn'>".$product["name"]."</h3>
+                        <h4 class='produktpris'>".$product["price"].":-</h4>
+                    </div>
+                    <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                    <hr>
+                    <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
+                    <button class='update'>Update</button>
+                    </div>";
+            }
+        ?>
         </div>    
     </div>
 
     <div id="Kakor" class="tabcontent">
         <div class="flex-lager">
-            <h3>Tomt</h3>
+        <?php
+            require "config.php";
+            $sql = "SELECT * FROM product WHERE category = 'cookies'";
+            $result = $conn->query($sql);
+            while($product = mysqli_fetch_assoc($result)){
+                echo "<div class='produkt'> 
+                    <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                    <div class='produktinfo'>
+                        <h3 class='produktnamn'>".$product["name"]."</h3>
+                        <h4 class='produktpris'>".$product["price"].":-</h4>
+                    </div>
+                    <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                    <hr>
+                    <p class='productDesc'>".$product["descr"]."</p>
+                    <button class='update'>Update</button>
+                    </div>";
+            }
+            $conn->close();
+        ?>
         </div>
     </div>
 

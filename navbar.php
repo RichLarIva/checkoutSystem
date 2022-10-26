@@ -15,8 +15,8 @@
         <a class="hor-btn" href="login.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
         <a class="hor-btn" href=""><i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i></a>
     </div>
+    <button id="menuOpen" class="btn-menu"><i class="fas fa-bars"></i></button>
 </div>
-
 <div class="ver-navbar">
     <a class="ver-btn" href="orders.php">Beställningar</a>
     <a class="ver-btn" href="">Lager</a>
@@ -41,5 +41,5 @@
 
 
 
-
+    <script src="https://kit.fontawesome.com/6f4748fc79.js" crossorigin="anonymous"></script>
 </div>

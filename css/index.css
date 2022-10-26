@@ -5,8 +5,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto Mono', monospace;
-
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: Geneva;
 }
 
 /* Horizontal Navbar */
@@ -73,6 +73,7 @@
 /* Vertical Navbar */
 
 .ver-navbar{
+    min-width: 95px;
     width: 15vw;
     height: 90vh;
     margin: 10vh 0 0 0;
@@ -89,7 +90,7 @@
     color: black;
     align-items: center;
     text-decoration: none;
-    transition: 0.25s;
+    transition: 250ms ease-in-out;
 }
 
 .ver-btn:hover{
@@ -97,15 +98,17 @@
     margin-left: 5w;
     color: white;
     background-color: gray;
-    border: 1px solid black;
+    outline: 2px solid currentColor;
+    border-radius: 2px;
+    transform: translateX(25px);
 }
 
 
 /* Container */
 
 .container{
-    width: 100vw;
-    height: 200vh;
+    width: 100%;
+    min-height: 100vh;
     padding: 12vh 0 0 16vw;
     background: linear-gradient(180deg, hsl(0, 0%, 95%), hsl(0, 0%, 85%));
 }
@@ -162,10 +165,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .produkt{
+    margin:2px;
     width: 15vw;
     height: 47vh;
     background-color: lightgray;
@@ -208,6 +212,7 @@
 
 .produktpris{
     margin-right: 0.5vw;
+    color:rgb(20, 181, 20);
 }
 
 .update{
@@ -224,8 +229,6 @@
     background-color: lightgray;
     cursor: pointer;
 }
-
-
 
 
 /* Log in */
