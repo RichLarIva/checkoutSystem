@@ -70,5 +70,7 @@ if(isset($_POST['login'])){
             <p class="register-para">Don't have an account? <a href="registerAccount.php">Register here!</a></p>
         </form>
     </div>
-</body>
-</html>
+
+    <?php
+    include "footer.php";
+?>

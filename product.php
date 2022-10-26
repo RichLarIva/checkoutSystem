@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+    $barcode=$_GET["barcode"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +14,12 @@
     <?php include 'navbar.php'; ?>
     <div class="container">
         <div class="productView">
-
+            <?php
+                
+            ?>
         </div>
     </div>
-</body>
-</html>
+
+<?php
+    include "footer.php";
+?>

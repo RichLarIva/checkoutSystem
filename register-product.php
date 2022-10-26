@@ -69,5 +69,7 @@
         }
     ?>
     <script src="js/productReg.js"></script>
-</body>
-</html>
+
+    <?php
+    include "footer.php";
+?>

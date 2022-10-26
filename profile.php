@@ -129,5 +129,7 @@ if(isset($_POST['deleteProfile'])){
             editProfile.style.display = 'block';
         }
     </script>
-</body>
-</html>
+
+<?php
+    include "footer.php";
+?>

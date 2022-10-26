@@ -94,5 +94,7 @@ if(!isset($_SESSION["isAdmin"]) || $_SESSION["isAdmin"] != true){
 
             ?>
         </div>
-    </body>
-</html>
+
+        <?php
+    include "footer.php";
+?>
