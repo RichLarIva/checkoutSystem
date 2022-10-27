@@ -23,7 +23,7 @@
             
             <div class="formbox">
                 <label for="email" class="formlabel">Email:</label><br>
-                <input type="text" class="forminput" name="email" required><br>
+                <input type="email" class="forminput" name="email" required><br>
             </div>
 
             <div class="formbox">

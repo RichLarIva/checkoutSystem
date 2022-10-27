@@ -18,14 +18,31 @@
             require "config.php";
                 $sql = "SELECT * FROM product WHERE barcode='$barcode'";
                 $result = $conn->query($sql);
-                while($prod = mysqli_fetch_assoc($result)){
+                $prod = mysqli_fetch_assoc($result);
                     echo "<div class='productInfo'>
                             <img src='".$prod["image"]."' alt='Product Picture'>
-                            <h1>".$prod["name"]."</h1>
-                        <p>".$prod["descr"]."</p> 
-                        <hr>
-                        <span> Category: ".$prod["category"]."</span>
+                            <div class='productflexbox'>
+                                <h1>".$prod["name"]."</h1>
+                                <hr>
+                                <p>".$prod["descr"]."</p> 
+                                <span> Category: ".$prod["category"]."</span>
+                                <form method='post' action='#'>
+                                    <input type='submit' value='Add to cart' name='AddtoCart'>
+                                </form>
+                            </div>
                     </div>";
+
+                if(isset($_POST["AddtoCart"])){
+                    $name = $prod["name"];
+                    if(isset($_SESSION["cart"]) && is_array($_SESSION['cart'])){
+                        if(array_key_exists($name, $_SESSION['cart'])){
+                            $_SESSION['cart'][$name] += 1;
+                        }
+                    }
+                    else{
+                        $_SESSION['cart'][$name] += 1;
+                    }
+
                 }
             ?>
         </div>

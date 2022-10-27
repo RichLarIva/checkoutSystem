@@ -4,7 +4,7 @@ CREATE TABLE Accounts (
     user_type TINYINT(1) DEFAULT(0),
     passwrd VARCHAR(250) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    reg_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    reg_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO Accounts (Username, User_Type, Passwrd, Email) VALUES ('testAccount', '1', 'password123', 'test@bruhmail.com');

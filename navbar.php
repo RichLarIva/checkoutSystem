@@ -11,14 +11,14 @@
         
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="css/index.css">
-            <h1 class="nav-h1">Butik</h1>
+            <h1 class="nav-h1">Butik manager</h1>
         
         </div>    
     </div>
 
     <div class="hor-btnbox">
-        <div class="hor-loginbox">
-            <p class="hor-loginname">Log in</p>
+        <div class="hor-loginbox" onclick="window.location='login.php'">
+            <p class="hor-loginname"><?php echo $_SESSION['username']; ?></p>
             <a class="hor-btn" href="login.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
         </div>
         <a class="hor-btn hor-cartbtn" href=""><i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i></a>
@@ -29,7 +29,7 @@
 <div class="ver-navbar">
     <a class="ver-btn" href="orders.php">Beställningar</a>
     <a class="ver-btn" href="">Lager</a>
-    <a class="ver-btn" href="">Rapport</a>
+    <a class="ver-btn" href="report.php">Rapport</a>
     <a class="ver-btn" href="createTables.php">Create Tables</a>
     <?php
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ }
@@ -44,6 +44,8 @@
     ?>
 
     <a class="ver-btn" href="register-product.php">Register Product</a>
+    <a class="ver-btn" href="profile.php">Profile</a>
+
 
 
 

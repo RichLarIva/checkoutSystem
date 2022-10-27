@@ -23,18 +23,23 @@
     <div class="productHolder">
             <?php
                 require "config.php";
+
                 $sql = "SELECT * FROM product";
                 $result = $conn->query($sql);
+
                 while($prod = mysqli_fetch_assoc($result)){
                     echo "<div class='regprod'><img class='regprodimg' src='".$prod["image"]."' alt='Product Picture'><hr><h1 class='regprodname'>".$prod["name"]."</h1><p class='regproductdesc'>".$prod["descr"]."</p> <br><button onclick='getBarCode(".$prod["barcode"].")'>Get The Barcode</button> <span> Category: ".$prod["category"]."</span></div>";
                 }
+
                 $conn->close();
             ?>
         </div>
+        
         <div class="tab">
             <button onclick="openTab(event, 'RegProd')" class="tablinks active" id="defaultOpen">Add Product</button>
             <button onclick="openTab(event, 'AddProd')" class="tablinks">Register New Product</button>
         </div>
+
         <div id="RegProd" class="tabcontent">
             <form method="POST" class="productReg">
                 <input type="text" name="barcode" placeholder="BARCODE" required minlength="3" maxlength="15" pattern="[0-9]+" title="Only Numbers are accepted" id="bc">
@@ -76,8 +81,8 @@
         
         $imgArray = array('image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp', 'image/apng');
         $file = $_FILES[$fileName]['type'];
-        switch(true)
-        {
+
+        switch(true){
             case in_array($file, $imgArray);
                 moveFile("images", "Image", $fileName);
                 break;
@@ -98,6 +103,7 @@
         $temp_name = $_FILES[$fileServer]["tmp_name"];
         $path_filename_ext = $target_dir.$fileName.".".$ext;
         $file = $path_filename_ext;
+
         if(file_exists($path_filename_ext)){
             echo "<p class='font-weight-bold bg-danger text-warning'> Sorry, file already exists!</p>";
         }
@@ -148,7 +154,7 @@
                 $res = $conn->query($sql);
 
                 if($res->num_rows == 0){
-                    header("location:new-product.php?barcode=".$barcode);
+                    echo "Item doesn't exist";
                 }
 
                 else{
