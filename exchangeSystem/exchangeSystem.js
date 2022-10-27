@@ -47,7 +47,7 @@ function getAmount() {
       console.log("Nej för 500");
    }
 
-/*
+/* Gör på de andra
    if (rest >= femHundra) {
     antalSedlar =parseInt(rest / femHundra);
     console.log(antalSedlar + "*"+ " 500 SEK" +'<br>');
