@@ -25,22 +25,33 @@
                                 <h1>".$prod["name"]."</h1>
                                 <hr>
                                 <p>".$prod["descr"]."</p> 
-                                <span> Category: ".$prod["category"]."</span>
-                                <form method='post' action='#'>
+                                <span> Category: ".$prod["category"]."</span>";
+                                if($prod["amount"] != 0){
+                                    echo "<form method='post' action='#'>
+                                    <input type='number' name='qty' value='1' min='1' max='".$prod['amount']."' placeholder='Quantity' required>
                                     <input type='submit' value='Add to cart' name='AddtoCart'>
-                                </form>
+                                </form>";
+                                }
+                                echo "
                             </div>
                     </div>";
 
                 if(isset($_POST["AddtoCart"])){
                     $name = $prod["name"];
-                    if(isset($_SESSION["cart"]) && is_array($_SESSION['cart'])){
-                        if(array_key_exists($name, $_SESSION['cart'])){
-                            $_SESSION['cart'][$name] += 1;
+                    $qty = (int)$_POST["qty"];
+                    if($qty > 0){
+                        if(isset($_SESSION["cart"]) && is_array($_SESSION['cart'])){
+                            if(array_key_exists($name, $_SESSION['cart'])){
+                                $_SESSION['cart'][$name] += $qty;
+                            }
+                            else{
+                                $_SESSION['cart'][$name] = $qty;
+                            }
                         }
-                    }
-                    else{
-                        $_SESSION['cart'][$name] += 1;
+                        else{
+                            # No products in cart, this will add the first product to cart
+                            $_SESSION['cart'] = array($name => $qty);
+                        }
                     }
 
                 }

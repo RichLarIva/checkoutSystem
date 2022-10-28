@@ -18,7 +18,8 @@
 
     <div class="hor-btnbox">
         <div class="hor-loginbox" onclick="window.location='login.php'">
-            <p class="hor-loginname"><?php echo $_SESSION['username']; ?></p>
+            <p class="hor-loginname"><?php if(isset($_SESSION))
+                echo $_SESSION['username']; ?></p>
             <a class="hor-btn" href="login.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
         </div>
         <a class="hor-btn hor-cartbtn" href=""><i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i></a>
@@ -42,11 +43,8 @@
             echo '<a class="ver-btn" href="adminpage.php">Admin page</a>';
         }
     ?>
-
+    <a class="ver-btn" href="register-payment.php">Register Purchase</a>
     <a class="ver-btn" href="register-product.php">Register Product</a>
     <a class="ver-btn" href="profile.php">Profile</a>
-
-
-
 
 </div>

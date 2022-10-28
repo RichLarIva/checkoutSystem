@@ -568,6 +568,19 @@ input:not(:invalid):not([type="submit"]){
     border-radius: 5px;
 }
 
+.orderProd{
+    height:25vh;
+    width:50vw;
+    background: hsla(0, 0%, 47%, 0.66);
+    padding:10px;
+
+}
+.orderProd img{
+    width: 128px;
+    height: 128px;
+    margin: auto 0;
+    margin-left:20px;
+}
 
 #menuOpen{
     width: 3vw;
@@ -612,4 +625,9 @@ input:not(:invalid):not([type="submit"]){
     }
   }
 
-  
+.orderTable,thead,th,tr,td{
+    outline:2px solid currentColor;
+    padding:4px;
+color:white;
+background: rgb(106, 106, 106);
+}
