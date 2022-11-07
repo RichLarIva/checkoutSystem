@@ -31,11 +31,11 @@
                             <span>".(float)$prod['price'].":- </span>
                             <span>Amount: ".(int)$prodsInCart[$prod['name']]."</span>
                         </div>";
-                    $subtotal += (float)$prod["price"] *  (int)$prodsInCart[$prod['name']];
+                    $subtotal += (float)$prod["price"] * (int)$prodsInCart[$prod['name']];
                     
                 }
             }
-                echo $subtotal;
+                echo "$subtotal:-";
         ?>
         <form action="#" method="POST">
             <input type="radio" name="payment" value="0" id="swish">
@@ -60,22 +60,38 @@
             $itemID = $pro["id"];
             $sql = "INSERT INTO order_item (order_id, item_id, item_name, item_qty, item_price) VALUES($id, $itemID, '$key', '".(int)$prodsInCart[$prod['name']]."', $itemPrice)";
             if($conn->query($sql) === TRUE){
-                $sqlt = "SELECT amount FROM product WHERE name='$key'";
+                $sqlt = "SELECT amount, barcode FROM product WHERE name='$key'";
                 $res = $conn->query($sqlt);
                 $re = mysqli_fetch_assoc($res);
                 $am = $re["amount"] - (int)$prodsInCart[$prod['name']];
-                $sql = "UPDATE product SET amount = ? WHERE name = '$key'";
-                
-                if($stmt = $conn->prepare($sql)){
-                    if($am >= 0){
-                        $am = 0;
+                $barcode = $re['barcode'];
+                $i = 0;
+                while ($i != (int)$prodsInCart[$prod['name']])
+                {
+                    $q = "SELECT * FROM `item` WHERE barcode='$barcode' AND bought='0' ORDER BY best_before;";
+                    $result = $conn->query($q);
+                    $values = mysqli_fetch_assoc($result);
+                    $itID = $values['id'];
+                    echo $itID;
+                    $qup = "UPDATE item set bought='1' WHERE id='$itID'";
+                    $conn->query($qup);
+                    $i++;
+                }
+                    if($stmt = $conn->prepare($sql)){
+                        
+                    $sql = "UPDATE product SET amount = ? WHERE name = '$key'";
+                    
+                    if($stmt = $conn->prepare($sql)){
+                        if($am <= 0){
+                            $am = 0;
+                        }
+                        $stmt->bind_param("i", $am);
+                        if($stmt->execute()){
+                            unset($_SESSION['cart']);
+                            header("location: index.php");
+                        }
+                        
                     }
-                    $stmt->bind_param("i", $am);
-                    if($stmt->execute()){
-                        unset($_SESSION['cart']);
-                        header("location: index.php");
-                    }
-
                 }
             }
             else{

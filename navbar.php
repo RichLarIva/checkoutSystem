@@ -6,7 +6,6 @@
     <div id="brandMenu">
         <button id="menuOpen" class="btn-menu"><i class="fas fa-bars"></i></button>
         <div id="brand" onclick="window.location.href='index.php'">
-            <!-- <img src="images/AMI.png" alt="Account Manager Logo" class="nav-logo"> -->
             <img src="https://www.freeiconspng.com/thumbs/gear-icon/gear-icon-13.png" alt="Account Manager Logo" class="nav-logo">
         
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,7 +13,7 @@
             <h1 class="nav-h1">Butik manager</h1>
         
         </div>    
-    </div>
+    </div> 
 
     <div class="hor-btnbox">
         <div class="hor-loginbox" onclick="window.location='login.php'">
@@ -22,7 +21,7 @@
                 echo $_SESSION['username']; ?></p>
             <a class="hor-btn" href="login.php"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
         </div>
-        <a class="hor-btn hor-cartbtn" href=""><i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i></a>
+        <a class="hor-btn hor-cartbtn" href="register-payment.php"><i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i></a>
     </div>
 </div>
 
@@ -31,7 +30,6 @@
     <a class="ver-btn" href="orders.php">Beställningar</a>
     <a class="ver-btn" href="">Lager</a>
     <a class="ver-btn" href="report.php">Rapport</a>
-    <a class="ver-btn" href="createTables.php">Create Tables</a>
     <?php
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ }
         else{

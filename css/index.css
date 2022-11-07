@@ -384,9 +384,13 @@ input:not(:invalid):not([type="submit"]){
 
 .productReg{
     width:80vw;
+    height: 60vh;
     margin:auto;
     text-align: center;
     background-color: rgb(124, 124, 124);
+    display: flex;
+    flex-direction: column;
+
 }
 
 .productReg input{
@@ -402,6 +406,7 @@ input:not(:invalid):not([type="submit"]){
     width:90%;
     height:500px;
 }
+
 
 
 .btn-menu{
@@ -569,15 +574,15 @@ input:not(:invalid):not([type="submit"]){
 }
 
 .orderProd{
-    height:25vh;
-    width:50vw;
+    height:auto;
+    width:20vw;
     background: hsla(0, 0%, 47%, 0.66);
     padding:10px;
 
 }
 .orderProd img{
-    width: 128px;
-    height: 128px;
+    width: 15vw;
+    height: 15vw;
     margin: auto 0;
     margin-left:20px;
 }
@@ -605,10 +610,12 @@ input:not(:invalid):not([type="submit"]){
 .reportbox{
     width: 40%;
     height: auto;
-    background-color: green;
+    /* background-color: green; */
     margin: 1vh;
     padding-left: 2vw;
 }
+
+
 
 
 /* If the screen size is X wide or more, set the font-size of <div> to X */
@@ -626,8 +633,30 @@ input:not(:invalid):not([type="submit"]){
   }
 
 .orderTable,thead,th,tr,td{
-    outline:2px solid currentColor;
-    padding:4px;
-color:white;
-background: rgb(106, 106, 106);
+    outline:2px solid black;
+    color:white;
+    background: gray;
+}
+
+th,tr,td, .reginputbox{
+    padding: 10px;
+}
+
+/* #bc, #add-date, #add-submit, .reginputbox{
+    float: right;
+} */
+
+.reginput{
+    width: 90%;
+    height: 7.5vh;
+}
+
+
+
+#amountSpan::before{
+    content: 'Amount:';
+}
+
+#expDate::before{
+    content:'Expiration date:';
 }

@@ -35,7 +35,7 @@
                             $re = $conn->query($sql);
                             while($us = mysqli_fetch_assoc($re)){
                                 if(date("Y-m-d", strtotime($resu['order_date'])) == date("Y-m-d", strtotime($today))){
-                                echo "<tr> <td>".$us['item_name']."</td><td>".$us['item_qty']."</td><td>".date("Y-m-d", strtotime($resu['order_date']))."</td><td>".$us['item_price']."</td>";
+                                echo "<tr class='tr-rep'> <td class='td-rep'>".$us['item_name']."</td><td>".$us['item_qty']."</td><td>".date("Y-m-d", strtotime($resu['order_date']))."</td><td>".$us['item_price']."</td>";
                                 }
                                 echo "<tr>";
                             }
@@ -142,7 +142,6 @@
                 ?>
                 <h1 class="monthly-sum">Total sales: </h1>
                 <?php 
-
                 $sql = "SELECT order_total, order_date FROM orders";
                 $res = $conn->query($sql);
                 $total = 0.00;

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require 'pub-funcs.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,7 @@
 <body onload="document.getElementById('defaultOpen').click();">
 
     <?php include 'navbar.php'; ?>
+    
     <div class="container">
 
         <div class="tab">
@@ -27,22 +29,7 @@
         <div id="Godis" class="tabcontent">
             <div class="flex-lager">
                 <?php
-                    require "config.php";
-
-                    $sql = "SELECT * FROM product WHERE category = 'candy'";
-                    $result = $conn->query($sql);
-
-                    while($product = mysqli_fetch_assoc($result)){
-                        echo"<div class='produkt'> 
-                                <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                                <h3 class='produktnamn'>".$product["name"]."</h3>
-                                <h4 class='produktpris'>".$product["price"].":-</h4>
-                                <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                                <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                                <button class='update'>Update</button>
-                                <button class='purchasebtn'>Purchase</button>
-                            </div>";
-                    }
+                    post_products("candy");
                 ?>
             </div>
         </div>
@@ -50,23 +37,7 @@
         <div id="Chips" class="tabcontent">
             <div class="flex-lager">
                 <?php
-
-                    require "config.php";
-
-                    $sql = "SELECT * FROM product WHERE category = 'chips'";
-                    $result = $conn->query($sql);
-
-                    while($product = mysqli_fetch_assoc($result)){
-                        echo "<div class='produkt'> 
-                            <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                                <h3 class='produktnamn'>".$product["name"]."</h3>
-                                <h4 class='produktpris'>".$product["price"].":-</h4>
-                            <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                            <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                            <button class='update'>Update</button>
-                            <button class='purchasebtn'>Purchase</button>
-                            </div>";
-                    }
+                    post_products("chips");
                 ?>
             </div>  
         </div>
@@ -74,22 +45,7 @@
         <div id="Dryck" class="tabcontent">
             <div class="flex-lager">
                 <?php
-                    require "config.php";
-
-                    $sql = "SELECT * FROM product WHERE category = 'drinks'";
-                    $result = $conn->query($sql);
-
-                    while($product = mysqli_fetch_assoc($result)){
-                        echo "<div class='produkt'> 
-                            <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                                <h3 class='produktnamn'>".$product["name"]."</h3>
-                                <h4 class='produktpris'>".$product["price"].":-</h4>
-                            <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                            <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                            <button class='update'>Update</button>
-                            <button class='purchasebtn'>Purchase</button>
-                            </div>";
-                    }
+                    post_products("drinks");
                 ?>
             </div>    
         </div>
@@ -97,22 +53,7 @@
         <div id="Frukt" class="tabcontent">
             <div class="flex-lager">
                 <?php
-                    require "config.php";
-
-                    $sql = "SELECT * FROM product WHERE category = 'fruit'";
-                    $result = $conn->query($sql);
-
-                    while($product = mysqli_fetch_assoc($result)){
-                        echo "<div class='produkt'> 
-                            <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                                <h3 class='produktnamn'>".$product["name"]."</h3>
-                                <h4 class='produktpris'>".$product["price"].":-</h4>
-                            <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                            <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                            <button class='update'>Update</button>
-                            <button class='purchasebtn'>Purchase</button>
-                            </div>";
-                    }
+                    post_products("fruit");
                 ?>
             </div>    
         </div>
@@ -120,24 +61,7 @@
         <div id="Kakor" class="tabcontent">
             <div class="flex-lager">
                 <?php
-                    require "config.php";
-
-                    $sql = "SELECT * FROM product WHERE category = 'cookies'";
-                    $result = $conn->query($sql);
-
-                    while($product = mysqli_fetch_assoc($result)){
-                        echo "<div class='produkt'> 
-                            <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                                <h3 class='produktnamn'>".$product["name"]."</h3>
-                                <h4 class='produktpris'>".$product["price"].":-</h4>
-                                <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                                <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                                <a href='register-product.php'> <button class='update'>Update</button> </a>
-                                <button class='purchasebtn'>Purchase</button>
-                            </div>";
-                    }
-
-                    $conn->close();
+                    post_products('cookies');
 
                 ?>
             </div>
@@ -166,22 +90,16 @@
         </script>
 
         <script>
-            function onKonamiCode(cb) {
-            var input = '';
-            var key = '38384040373937396665';
-            document.addEventListener('keydown', function (e) {
-                input += ("" + e.keyCode);
-                if (input === key) {
-                return cb();
-                }
-                if (!key.indexOf(input)) return;
-                input = ("" + e.keyCode);
-            });
+            function onKC(cb) {
+                var input = '';
+                var key = '38384040373937396665';
+                document.addEventListener('keydown', function (e) {
+                    input += ("" + e.keyCode);
+                    if (input === key) { return cb();}
+                    if (!key.indexOf(input)) return; input = ("" + e.keyCode);
+                });
             }
-
-            onKonamiCode(function () {
-                alert('Secret unlocked');
-            })
+            onKC(function () { alert('Hello'); })
         </script>
 
     </div>

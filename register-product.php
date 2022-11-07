@@ -1,9 +1,9 @@
 <?php
     session_start();
-//     if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
-//         header("location: index.php");
-//     }
-// ?>
+     if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
+         header("location: index.php");
+     }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,11 +42,17 @@
 
         <div id="RegProd" class="tabcontent">
             <form method="POST" class="productReg">
-                <input type="text" name="barcode" placeholder="BARCODE" required minlength="3" maxlength="15" pattern="[0-9]+" title="Only Numbers are accepted" id="bc">
+                <input type="text" name="barcode" placeholder="BARCODE" required minlength="3" maxlength="15" pattern="[0-9]+" title="Only Numbers are accepted" id="bc" class="reginput">
                 <br>
-                <span id="best-before"><input type="date" name="bestbefore" required></span>
+                <div class="reginputbox">
+                    <span id="expDate"><input type="date" name="bestbefore" required id="add-date" class="reginput"></span>
+                </div>
                 <br>
-                <input type="submit" name="submit" value="Add Item">
+                <div class="reginputbox">
+                    <span id="amountSpan"><input type="number" value="1" min="1" max="999" name="amountProd" class="reginput"></span>
+                </div>
+                <br>
+                <input type="submit" name="submit" value="Add Item" id="add-submit" class="reginput">
             </form>
         </div>
             
@@ -77,47 +83,6 @@
 </div>
 
 <?php
-    function handleFiles($fileName){
-        
-        $imgArray = array('image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp', 'image/apng');
-        $file = $_FILES[$fileName]['type'];
-
-        switch(true){
-            case in_array($file, $imgArray);
-                moveFile("images", "Image", $fileName);
-                break;
-
-            default:
-                echo "<p class='font-weight-bold bg-danger text-warning'> FILE IS NOT SUPPORTED</p>";
-                break;
-        }
-    }
-    function moveFile($folder, $fileType, $fileServer){
-        $size = $_FILES[$fileServer]["size"];
-        $target_dir = "$folder/"; #Gets the folder of where the file should go to allow ease of code
-        $file_Name = $_FILES[$fileServer]["name"];
-        $fileNa = $_POST["product"];
-        $path = pathinfo($file_Name);
-        $fileName = $fileNa.$path["filename"];
-        $ext = $path['extension'];
-        $temp_name = $_FILES[$fileServer]["tmp_name"];
-        $path_filename_ext = $target_dir.$fileName.".".$ext;
-        $file = $path_filename_ext;
-
-        if(file_exists($path_filename_ext)){
-            echo "<p class='font-weight-bold bg-danger text-warning'> Sorry, file already exists!</p>";
-        }
-
-        if($size > 5000000){
-            echo "<p class='font-weight-bold bg-danger text-warning'> Sorry, this file is to large max file size is 5MB!</p>";
-        }
-
-        else{
-            move_uploaded_file($temp_name, $path_filename_ext);
-            echo "<p class='font-weight-bold bg-success text-white'> Uploading $fileType file!</p>"; 
-            # uses the $fileType variable to display the correct file
-        }
-    }
     require "config.php";
     include "pub-funcs.php";
     if(isset($_FILES['image']) && $_FILES['file']['error'] == 0)
@@ -150,6 +115,7 @@
 
                 $barcode = $_POST["barcode"];
                 $bfDate = $_POST["bestbefore"];
+                $amnt = $_POST["amountProd"];
                 $sql = "SELECT * FROM product WHERE barcode='$barcode'";
                 $res = $conn->query($sql);
 
@@ -158,28 +124,42 @@
                 }
 
                 else{
-                    $sql = "INSERT INTO item (best_before, barcode) VALUES(?, ?)";
+                            if($amnt == 1){
+                                $sql = "INSERT INTO item (best_before, barcode) VALUES(?, ?)";
 
-                    if($stmt = $conn->prepare($sql)){
-                        $stmt->bind_param("ss", $bfDate, $barcode);
+                                if($stmt = $conn->prepare($sql)){
+                                    $stmt->bind_param("ss", $bfDate, $barcode);
 
-                        if($stmt->execute()){
-
-                            $query = "SELECT COUNT(*) as amount FROM item WHERE barcode='$barcode'";
-                            $res = $conn->query($query);
-                            $data = mysqli_fetch_assoc($res);
-                            $amount = $data['amount'];
-                            $sql = "UPDATE product SET amount = ? WHERE barcode = '$barcode'";
-
-                            if($stmt = $conn->prepare($sql)){
-                                $stmt->bind_param("i", $amount);
-
-                                if($stmt->execute()){
-                                    header("location: index.php");
+                                    if($stmt->execute()){
+                                        header("location: index.php");
+                                    }
                                 }
                             }
-                        }
+                            
+                        
+                    else{
+                        $i = 0;
+                        while($i < $amnt){
+                            $sql = "INSERT INTO item (best_before, barcode) VALUES(?, ?)";
+                                if($stmt = $conn->prepare($sql)){
+                                    $stmt->bind_param("ss", $bfDate, $barcode);
+                                    if($stmt->execute()){
+                                        
+                                        $i++;
+                                    }
+                                }
+                            }
+                    
                     }
+                    $query = "SELECT COUNT(*) as amount FROM item WHERE barcode='$barcode' AND bought='0'";
+                        $res = $conn->query($query);
+                        $data = mysqli_fetch_assoc($res);
+                        $amount = $data['amount'];
+                        $sql = "UPDATE product SET amount = ? WHERE barcode = '$barcode'";
+                        if($stmt = $conn->prepare($sql)){
+                            $stmt->bind_param("i", $amount);
+                            $stmt->execute();
+                        }
                     $stmt->close();
                 }
                 $conn->close();

@@ -1,3 +1,7 @@
+<?php
+    include "pub-funcs.php";
+?>
+
 <!DOCTYPE html>
 <html lang="eng">
     <head>
@@ -10,21 +14,31 @@
     <body>
     <?php
         include 'navbar.php';
+        include 'config.php';
+        $shoudAccountCreate = true;
     ?>
 
     <div class="container">
-        <form action="#" method="POST" class="formcont">
+        <form action="" method="POST" class="formcont">
             <h1 class="form-h1">Register</h1>
             <hr class="form-hr">
             <div class="formbox">
                 <label for="username" class="formlabel">Username:</label><br>
                 <input type="text" class="forminput" name="username" minlength="4" maxlength="30" required><br>
             </div>
+
+            <?php
+                checkIfNotUnique($conn, "username");
+            ?>
             
             <div class="formbox">
                 <label for="email" class="formlabel">Email:</label><br>
                 <input type="email" class="forminput" name="email" required><br>
             </div>
+
+            <?php
+                checkIfNotUnique($conn, "email");
+            ?>
 
             <div class="formbox">
                 <label for="password" class="formlabel">Password:</label><br>
@@ -33,28 +47,20 @@
 
             <div class="formbox"><input type="submit" class="forminput" name="reg" value="Create Account"></div>
 
-
             <?php
-                include 'config.php';
-
-
-
-                if(isset($_POST['reg'])){
+                if(isset($_POST['reg']) && $shoudAccountCreate){
                     $username = $_POST['username'];
                     $email = $_POST['email'];
                     $passwrd = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
                     $splregAccount = "INSERT INTO Accounts (Username, Passwrd, Email) VALUES ('$username', '$passwrd', '$email')";
                 
                     if(mysqli_query($conn, $splregAccount)){
-                        echo "account created :)";
+                        echo "Account Created :)";
                     }
                     else{
-                        echo "no account created :(";
+                        echo "Something went wrong :(";
                     }
                 }
-
-            
             ?>
         </form>
     </div>
