@@ -13,12 +13,50 @@
 
 .hor-navbar{
     width: 100%;
+    height: 17vh;
+    background-color: #939393;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+}
+
+.hor-navbar1{
+    width: 100%;
     height: 10vh;
-    background: linear-gradient(0deg, hsl(0, 0%, 70%), hsl(0, 0%, 80%));
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
+}
+
+.hor-navbar2{
+    width: 100%;
+    height: 6vh;
+    margin-top: 10vh;
+    padding-top: 1vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+}
+
+.nav2-a{
+    width: 10vw;
+    height: 5vh;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    background-color: #D9D9D9;
+    border: 2px solid black;
+    border-radius:50px;
+    font-size: 1vw;
+    line-height: 4.5vh;
+}
+
+.nav2-a:hover{
+    background-color: white;
+    transition: 0.1s;
 }
 
 #brand{
@@ -31,7 +69,7 @@
 }
 
 .nav-h1{
-    font-size: 8vh;
+    font-size: 4vw;
     margin: 0 0 0 1vw;
 }
 
@@ -45,59 +83,58 @@
     transform: rotate(360deg);
 }
 
+
+
+
+
 .hor-btnbox{
     height: 10vh;
+    width: 30vw;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
 .hor-loginbox{
-    width: 10vw;
-    height: 8vh;
-    margin-top: 1vh;
+    width: auto;
+    height: 7vh;
+    margin: 10px;
+    padding: 7px 14px 7px 7px;
+    background-color: #D9D9D9;
+    border: 2px solid black;
+    border-radius: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.25s;
-    border-radius: 100px;
+
 }
 
 .hor-loginname{
-    margin: auto;
-    margin-left: 1vw;
+    padding: 7px;
 }
 
 .hor-btn{
-    width: 8vh;
-    height: 8vh;
-    padding-top: 1.5vh;
     color: black;
-    text-decoration: none;
-    text-align: center;
-    transition: 0.25s;
-    border-radius: 100px;
 }
 
-.hor-loginbox:hover{
-    border: 2px solid black;
-    background-color: white;
+.hor-btn:hover{
     cursor: pointer;
+    background-color: white;
+    transition: 0.25s;
 }
 
 .hor-cartbtn{
-    margin: 1vh 1vw 0 0.5vw;
-
-}
-
-.hor-cartbtn:hover{
-    border-radius: 100px;
+    width: 7vh;
+    height: 7vh;
+    margin: 10px;
+    padding: 5px;
+    background-color: #D9D9D9;
     border: 2px solid black;
-    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
 }
 
-/* Vertical Navbar */
+/* Vertical Navbar
 
 .ver-navbar{
     min-width: 125px;
@@ -135,22 +172,22 @@
     outline: 2px solid currentColor;
     border-radius: 2px;
     transform: translateX(25px);
-}
+}*/
 
 
 /* Container */
 
 .container{
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
-    padding: 12vh 0 0 16vw;
-    background: linear-gradient(180deg, hsl(0, 0%, 95%), hsl(0, 0%, 85%));
+    padding: 19vh 0 0 1vw;
+    background-color: #F5F5F5;
 }
 
 /* Categories tabs */
 
 .tab {
-    width: 83vw;
+    width: 98vw;
     overflow: hidden;
     border: 1px solid gray;
     background-color: white;
@@ -180,7 +217,7 @@
 }
 
 .tabcontent {
-    width: 83vw;
+    width: 98vw;
     display: none;
     padding: 6px 12px;
     border: 1px solid gray;
@@ -203,19 +240,18 @@
 .produkt{
     /* min-width: 250px; */
     margin:2px;
-    width: 15vw;
-    height: 65vh;
+    width: 30vh;
+    height: auto;
     background-color: lightgray;
     border: 2px solid gray;
-    border-radius: 15px;
+    box-sizing: content-box;
     transition: 0.5s;
 }
 
 .produktbild{
-    width:  13vw;
-    height: 13vw;
-    margin: 0.75vw;
-    border-radius: 15px;
+    width:  28vh;
+    height: 28vh;
+    margin: 1vh;
     transition: 0.5s;
 }
 
@@ -227,10 +263,9 @@
 }
 
 .produkt:hover .produktbild{
-    width:  14vw;
-    height: 14vw;
-    margin: 0.4vw;
-    border-radius: 15px;
+    width:  30vh;
+    height: 30vh;
+    margin: 0;
 }
 
 .produkt:has(.produktbild:hover){
@@ -260,14 +295,14 @@
 
 .productLink{
     display: block;
-    width: 13vw;
+    width: 28vh;
     height: 5vh;
-    margin: auto;
+    margin: 1vh;
     margin-top: 1vh;
     padding-top: 1vh;
-    color: black;
     font-size: 2vh;
     background-color: white;
+    color: black;
     border: 2px solid black;
     border-radius: 10px;
     text-align: center;
@@ -276,21 +311,25 @@
 }
 
 .update, .purchasebtn{
-    width: 13vw;
-    height: 5vh;
-    margin: 1vw 1vw 0 1vw;
+    width: 28vh;
+    height: 7vh;
+    margin: 1vh;
     font-size: 2vh;
-    border: 2px solid black;
     transition: 0.25s;
-    border-radius: 10px;
-    background-color: white;
+    background-color: red;
+    border: red;
+    border-radius: 5px;
+    color: white;
 }
 
-.update:hover, .productLink:hover, .purchasebtn:hover{
-    background-color: lightgray;
+.update:hover, .purchasebtn:hover{
+    background-color: darkred;
     cursor: pointer;
 }
 
+.productLink:hover{
+    background-color: lightgray;
+}
 
 
 /* Log in */
@@ -495,6 +534,7 @@ input:not(:invalid):not([type="submit"]){
 }
 
 
+
 /*Register product Page*/
 
 .regprod{
@@ -632,6 +672,8 @@ input:not(:invalid):not([type="submit"]){
     }
   }
 
+
+
 .orderTable,thead,th,tr,td{
     outline:2px solid black;
     color:white;
@@ -650,7 +692,6 @@ th,tr,td, .reginputbox{
     width: 90%;
     height: 7.5vh;
 }
-
 
 
 #amountSpan::before{

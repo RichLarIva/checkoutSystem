@@ -11,19 +11,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
     <title>Butik</title>
+
 </head>
 <body onload="document.getElementById('defaultOpen').click();">
 
     <?php include 'navbar.php'; ?>
+    <!-- <style>.hor-navbar{background-color: red; color: white;}</style> -->
     
     <div class="container">
 
         <div class="tab">
+            <!-- <button onclick="openTab(event, 'All')" class="tablinks active" id="defaultOpen">All</button> -->
             <button onclick="openTab(event, 'Godis')" class="tablinks active" id="defaultOpen">Godis</button>
             <button onclick="openTab(event, 'Chips')" class="tablinks">Chips</button>
             <button onclick="openTab(event, 'Dryck')" class="tablinks">Dryck</button>
             <button onclick="openTab(event, 'Frukt')" class="tablinks">Frukt</button>
             <button onclick="openTab(event, 'Kakor')" class="tablinks">Kakor</button>
+        </div>
+
+        <div id="All" class="tabcontent">
+            <div class="flex-lager">
+                <?php
+                    post_products("all");
+                ?>
+            </div>
         </div>
 
         <div id="Godis" class="tabcontent">

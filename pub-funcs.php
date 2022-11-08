@@ -59,8 +59,7 @@
                         <h4 class='produktpris'>".$product["price"].":-</h4>
                         <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
                         <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                        <a href='register-product.php'> <button class='update'>Update</button> </a>
-                        <button class='purchasebtn' onclick='AddToCart(".'"'.$product["name"].'"'.")'>Purchase</button>
+                        <button class='purchasebtn' onclick='AddToCart(".'"'.$product["name"].'"'.")'>Add to Cart</button>
                     </div>";
             }
     }

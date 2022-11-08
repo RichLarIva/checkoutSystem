@@ -9,13 +9,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register payment</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/payment.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 </head>
 <body>
+    <script src="js/payment.js"></script>
     <?php
         include "navbar.php";
     ?>
+
+    <br>  
     <div class="container">
+    <div id="checkout">
+
+        <div id="productview">
+            <div class="productpre">
+
+                <img class="prodpreimg" src="images/Kexchoklad.jpeg" alt="e">
+
+                <div class="prodinfo">
+                    <div class="prodname"><p class="pname">Product</p></div>
+
+                    <div class="prodremove"><button class="fa-solid fa-x"></button></div>
+
+                    <div class="prodprice"><p class="pprice">Price</p></div>
+
+                    <div class="prodamount">
+                        <div class="amountbtn"><button class="abtn">+</button></div>
+                        <div class="pamount"><p>0</p></div>
+                        <div class="amountbtn"><button class="abtn">-</button></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="mone">
+
+            <div class="moneinfo"><p>Total:</p><p id="mtottal"></p></div>
+
+            <div class="moneinfo"><p>Cash:</p><p id="mcash"></p></div>
+
+            <div class="moneinfo"><p>Return:</p><p id="mreturn"></p></div>
+
+        </div>
+
+        <div id="checkoutbtn"><button id="checkbtn" onclick="addProduct()">Checkout</button></div>
+
+    </div>
         <?php
+        include "livesearch.html";
+
         require "config.php";
             $prodsInCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
             $prods = array();
@@ -37,15 +99,21 @@
             }
                 echo "$subtotal:-";
         ?>
-        <form action="#" method="POST">
-            <input type="radio" name="payment" value="0" id="swish">
-            <label for="swish">Swish payment</label>
-            <br>
-            <input type="radio" name="payment" value="1" required id="cash">
-            <label for="cash">Cash payment</label>
-            <br>
-            <input type="submit" name="submit">
-        </form>
+
+
+        <div>
+            <form action="#" method="POST">
+                <input type="radio" name="payment" value="0" id="swish">
+                <label for="swish">Swish payment</label>
+                <br>
+                <input type="radio" name="payment" value="1" required id="cash">
+                <label for="cash">Cash payment</label>
+                <br>
+                <input type="submit" name="submit" value="Confirm Payment">
+            </form>
+        </div>
+
+
     <?php
     
     if(isset($_POST["submit"]) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])){

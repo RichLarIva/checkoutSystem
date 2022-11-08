@@ -1,0 +1,148 @@
+#checkout{
+    width: 20%;
+    height: 80vh;
+    background: linear-gradient(0deg, hsl(0, 0%, 70%), hsl(0, 0%, 80%));
+    float: right;
+}
+
+#productview{
+    width: 100%;
+    height: 70%;
+    border-bottom: ridge gray 4px;
+    overflow-y: scroll;
+}
+
+.productpre{
+    margin: auto;
+    margin-top: 3%;
+    width: 90%;
+    height: 20%;
+    border: ridge gray 3px;
+}
+
+.prodpreimg{
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 20%;
+    height: 73%;
+    float: left;
+    border-right: gray solid 4px;
+}
+
+.prodinfo{
+    margin-top: 3%;
+    margin-left: 2%;
+    float: left;
+    width: 70%;
+    height: 75%;
+}
+
+.prodname{
+    border-right: solid gray 2px;
+    border-left: solid gray 2px;
+    width: 75%;
+    text-align: center;
+    float: left;
+}
+
+.prodremove{
+    width: 10%;
+    float: left;
+    margin-left: 9%;
+}
+
+.prodprice{
+    border-right: solid gray 2px;
+    border-left: solid gray 2px;
+    margin-top: 3%;
+    padding-top: 3%;
+    width: 40%;
+    height: 55%;
+    float: left;
+    text-align: center;
+}
+
+.prodamount{
+    border-right: solid gray 2px;
+    border-left: solid gray 2px;
+    width: 50%;
+    height: 55%;
+    float: left;
+    margin-top: 3%;
+    margin-left: 3%;
+    padding-top: 3%;
+}
+
+.pamount{
+    text-align: center;
+    width: 50%;
+    float: left;
+    margin-left: 10%;
+}
+
+.amountbtn{
+    width: 10%;
+    float: left;
+    margin-left: 5%;
+}
+
+.abtn{
+    width: 150%;
+}
+
+.amountbt{
+    width: 10%;
+    float: left;
+    margin-left: 5%;
+}
+
+.abt{
+    width: 150%;
+}
+
+#mone{
+    margin-top: 3%;
+    margin-left: 4%;
+    width: 60%;
+    height: 15%;
+}
+
+.moneinfo{
+    margin-top: 2%;
+    padding-left: 7%;
+    border: ridge gray 5px;
+}
+
+#checkoutbtn{
+    margin: auto;
+    width: 90%;
+    height: 15%;
+}
+
+#checkbtn{
+    margin-top: 5%;
+    width: 60%;
+    height: 50%;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  #productview{
+    scrollbar-width: auto;
+    scrollbar-color: #0096ff #c0c0c0;
+  }
+
+  /* Chrome, Edge, and Safari */
+  #productview::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  #productview::-webkit-scrollbar-track {
+    background: #c0c0c0;
+  }
+
+  #productview::-webkit-scrollbar-thumb {
+    background-color: #0096ff;
+    border-radius: 10px;
+    border: 10px ridge #feffff;
+  }

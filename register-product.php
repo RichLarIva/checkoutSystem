@@ -99,6 +99,22 @@
             if($stmt = $conn->prepare("INSERT INTO product (price, amount, name, image, descr, category, barcode) VALUES (?, 0, ?, ?, ?, ?, ?)")){
                 $stmt->bind_param("dsssss", $price, $name, $file, $desc, $cat, $barcode);
                 if($stmt->execute()){
+                    $xmldoc = new DOMDocument();
+                    $xmldoc->load('links.xml');
+                    $newBarCode = $barcode;
+                    $newName = $name;
+                    $root = $xmldoc->firstChild;
+                    $newElement = $xmldoc->createElement('item');
+                    $root->appendChild($newElement);
+                    $newElem = $xmldoc->createElement('barcode');
+                    $newElement->appendChild($newElem);
+                    $newText = $xmldoc->createTextNode($newBarCode);
+                    $newElem->appendChild($newText);
+                    $newEl = $xmldoc->createElement('name');
+                    $newElem->appendChild($newEl);
+                    $newTxt = $xmldoc->createTextNode($newName);
+                    $newEl->appendChild($newTxt);
+                    $xmldoc->save('links.xml');
                     header("location: index.php");
                 }
             }
