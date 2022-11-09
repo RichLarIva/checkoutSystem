@@ -1,16 +1,15 @@
 
+/* Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Roboto Mono', monospace; */
     font-family: Geneva;
 }
 
 /* Horizontal Navbar */
-
 .hor-navbar{
     width: 100%;
     height: 17vh;
@@ -83,10 +82,7 @@
     transform: rotate(360deg);
 }
 
-
-
-
-
+/* Right buttons on navbar*/
 .hor-btnbox{
     height: 10vh;
     width: 30vw;
@@ -105,7 +101,6 @@
     border-radius: 50px;
     display: flex;
     flex-direction: row;
-
 }
 
 .hor-loginname{
@@ -176,7 +171,6 @@
 
 
 /* Container */
-
 .container{
     max-width: 100vw;
     min-height: 100vh;
@@ -184,8 +178,8 @@
     background-color: #F5F5F5;
 }
 
-/* Categories tabs */
 
+/* Categories tabs */
 .tab {
     width: 98vw;
     overflow: hidden;
@@ -227,10 +221,8 @@
 }
 
 /* Products */
-
 .flex-lager{
     width: 100%;
-    /* background-color: green; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -238,7 +230,6 @@
 }
 
 .produkt{
-    /* min-width: 250px; */
     margin:2px;
     width: 30vh;
     height: auto;
@@ -293,6 +284,7 @@
     color:rgb(20, 181, 20);
 }
 
+/* Info and add to cart buttons*/
 .productLink{
     display: block;
     width: 28vh;
@@ -341,7 +333,6 @@
 
 
 /* Log in */
-
 .formcont{
     width: 40vw;
     background-color: lightgray;
@@ -352,64 +343,6 @@
     border: 2px solid black;
     border-radius: 10px;
 }
-
-@media only screen and (max-width: 600px) {
-
-    .formcont {
-        width: 90vw;
-    }
-
-    .inv-table {
-        width: 90vw;
-    }
-
-    #checkout {
-        width: 60vw;
-    }
-
-    .prods {
-        width: 40vw;
-    }
-
-    .produkt {
-        width: 35vw;
-    }
-
-    .produktbild{
-        width: 33vw;
-        height: 33vw;
-        margin: 1vw;
-    }
-
-    .add-to-cart{
-        margin: 1.5vw;
-        padding: 2vw 1.5vh 2vw 1.5vh;
-    }
-
-    .productLink{
-        width: 30vw;
-    }
-
-    .container{
-        width: 100%;;
-    }
-
-    .flexreport{
-        width: 90vh;
-    }
-
-    .reportbox{
-        width: 50vw;
-        height: auto;
-        background-color: green;
-    }
-
-    .orderTable{
-        width: 40vh;
-    }
-}
-
-
   
 .form-h1{
     margin-top: 5vh;
@@ -445,7 +378,6 @@
     Form validation 
     Checks if its invalid and the type isn't file or date, it also checks if the placeholder is shown, I.E someone has written something into the input
 */
-
 input:not([type="date"]):not([type="file"]):invalid:not(:placeholder-shown):not(:focus){
     background-color: ivory;
     color:red;
@@ -462,10 +394,7 @@ input:not([type="date"]):not([type="file"]):invalid:not(:placeholder-shown){
     transition: 350ms ease-in-out;
 }
 
-/*
-    Checks if the input is valid, if so it should become light green to display that it's correct
-*/
-
+/* Checks if the input is valid, if so it should become light green to display that it's correct */
 input:not(:invalid):not([type="submit"]){
     transition: 250ms ease-in;
     background-color: lightgreen;
@@ -528,7 +457,6 @@ input:not(:invalid):not([type="submit"]){
 
 
 /* Product info page*/
-
 .productInfo{
     width:60vw;
     height: 50vh;
@@ -544,7 +472,6 @@ input:not(:invalid):not([type="submit"]){
     height: 50vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
 }
 
 .productInfo img{
@@ -602,7 +529,6 @@ input:not(:invalid):not([type="submit"]){
 
 
 /*Register product Page*/
-
 .regprod{
     width: 15vw;
     height: 30vw;
@@ -706,7 +632,6 @@ input:not(:invalid):not([type="submit"]){
 
 
 /* Report Info */ 
-
 .flexreport{
     display: flex;
     flex-direction: row;
@@ -716,28 +641,11 @@ input:not(:invalid):not([type="submit"]){
 .reportbox{
     width: 40%;
     height: auto;
-    /* background-color: green; */
     margin: 1vh;
     padding-left: 2vw;
 }
 
-
-
-
-@media screen and (min-width: 601px) {
-    .flex-lager {
-      width: 100%;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    .flex-lager {
-      font-size: 50%;
-    }
-  }
-
-
-
+/* Table */
 .orderTable,thead,th,tr,td{
     outline:2px solid black;
     color:white;
@@ -771,3 +679,71 @@ th,tr,td, .reginputbox{
     width:125px;
     height:65px;
 }
+
+
+/* Scaling for mobile resolution*/
+@media only screen and (max-width: 600px) {
+
+    .formcont {
+        width: 90vw;
+    }
+
+    .inv-table {
+        width: 90vw;
+    }
+
+    #checkout {
+        width: 60vw;
+    }
+
+    .prods {
+        width: 40vw;
+    }
+
+    .produkt {
+        width: 35vw;
+    }
+
+    .produktbild{
+        width: 33vw;
+        height: 33vw;
+        margin: 1vw;
+    }
+
+    .add-to-cart{
+        margin: 1.5vw;
+        padding: 2vw 1.5vh 2vw 1.5vh;
+    }
+
+    .productLink{
+        width: 30vw;
+    }
+
+    .container{
+        width: 100%;;
+    }
+
+    .flexreport{
+        width: 90vh;
+    }
+
+    .reportbox{
+        width: 50vw;
+        height: auto;
+        background-color: green;
+    }
+
+    .orderTable{
+        width: 40vh;
+    }
+
+    .flex-lager {
+        font-size: 50%;
+      }
+}
+
+@media screen and (min-width: 601px) {
+    .flex-lager {
+      width: 100%;
+    }
+  }
