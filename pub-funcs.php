@@ -48,20 +48,56 @@
 
     function post_products($type){
         require "config.php";
+            if($type != "all"){
+                $sql = "SELECT * FROM product WHERE     category = '".$type."'";
+                $result = $conn->query($sql);
 
-            $sql = "SELECT * FROM product WHERE category = '".$type."'";
-            $result = $conn->query($sql);
-
-            while($product = mysqli_fetch_assoc($result)){
-                echo "<div class='produkt'> 
-                    <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
-                        <h3 class='produktnamn'>".$product["name"]."</h3>
-                        <h4 class='produktpris'>".$product["price"].":-</h4>
-                        <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
-                        <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
-                        <button class='purchasebtn' onclick='AddToCart(".'"'.$product["name"].'"'.")'>Add to Cart</button>
+                while($product = mysqli_fetch_assoc ($result)){
+                    echo "<div class='produkt'> 
+                        <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                            <h3 class='produktnamn'>".$product["name"]."</h3>
+                            <h4 class='produktpris'>".$product["price"].":-</h4>
+                            <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                            <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
+                            <a class='add-to-cart' href='#' data-name='".$product["name"]."' data-price='".$product['price']."' data-imgURL='".$product["image"]."'>Add to Cart</a>
                     </div>";
+                }
             }
+            else if($type == "all" || $type === "all"){
+                $sql = "SELECT * FROM product ORDER BY category";
+                $result = $conn->query($sql);
+
+                while($product = mysqli_fetch_assoc ($result)){
+                    echo "<div class='produkt'> 
+                        <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                            <h3 class='produktnamn'>".$product["name"]."</h3>
+                            <h4 class='produktpris'>".$product["price"].":-</h4>
+                            <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                            <a class='productLink' href='product.php?barcode=".$product["barcode"]."'>Info</a>
+                            <a class='add-to-cart' href='#' data-name='".$product["name"]."' data-price='".$product['price']."' data-imgURL='".$product["image"]."'>Add to Cart</a>
+                            <br>
+                            <p class='categoryOfItem'>".$product["category"]."</p>
+                    </div>";
+                }
+            }
+    }
+    
+    function getAllProducts(){
+        require "config.php";
+        $sql = "SELECT * FROM product ORDER BY category";
+                $result = $conn->query($sql);
+
+                while($product = mysqli_fetch_assoc ($result)){
+                    echo "<div class='produkt'> 
+                        <img class='produktbild' src='".$product["image"]."' alt='Product Picture'>
+                            <h3 class='produktnamn'>".$product["name"]."</h3>
+                            <h4 class='produktpris'>".$product["price"].":-</h4>
+                            <h3 class='produktantal'>Stock: ".$product["amount"]."</h3>
+                            <br>
+                            <a class='add-to-cart' href='addToCart.php?name=".$product['name']."'>Add to Cart</a>
+                            <p class='categoryOfItem'>".$product["category"]."</p>
+                    </div>";
+                }
     }
 
     function checkIfNotUnique($conn, $currentChecking){

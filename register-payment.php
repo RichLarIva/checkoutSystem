@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "pub-funcs.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,99 +9,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register payment</title>
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/payment.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-function showResult(str) {
-  if (str.length==0) {
-    document.getElementById("livesearch").innerHTML="";
-    document.getElementById("livesearch").style.border="0px";
-    return;
-  }
-  var xmlhttp=new XMLHttpRequest();
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      document.getElementById("livesearch").innerHTML=this.responseText;
-      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
-    }
-  }
-  xmlhttp.open("GET","livesearch.php?q="+str,true);
-  xmlhttp.send();
-}
+        function showResult(str) {
+            if (str.length==0) {
+                document.getElementById("livesearch").innerHTML="";
+                document.getElementById("livesearch").style.border="0px";
+                return;
+            }
+            var xmlhttp=new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                    document.getElementById("livesearch").innerHTML=this.responseText;
+                    document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+                }
+            }
+
+            xmlhttp.open("GET","livesearch.php?q="+str,true);
+            xmlhttp.send();
+        }
 </script>
 </head>
 <body>
-    <script src="js/payment.js"></script>
     <?php
         include "navbar.php";
     ?>
 
     <br>  
     <div class="container">
+        
     <div id="checkout">
 
         <div id="productview">
-            <div class="productpre">
+            <?php
+            require "config.php";
+                $prodsInCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+                $prods = array();
+                $subtotal = 0.00;
+                $keys = array_keys($prodsInCart);
+                foreach($keys as $key){
+                    $res = $conn->query("SELECT * FROM product WHERE name='$key'");
+                    if($prodsInCart){
+                        $prod = mysqli_fetch_assoc($res);
+                        echo "<div class='productpre'>
+                                <img src='".$prod['image']."' class='prodpreimg' alt='Product Image'> 
+                                <div class='prodinfo'>
+                                <div class='prodname'><p class='pname'>".$prod['name']."</p></div>
+                                <div class='prodprice'><span class='pprice'>".(float)$prod['price'].":- </span></div>
+                                <div class='prodamount'> <span class='pamount'>Amount:".(int)$prodsInCart[$prod['name']]."</span></div>
+                                </div>
+                            </div>";
+                        $subtotal += (float)$prod["price"] * (int)$prodsInCart[$prod['name']];
+                    }
+                }
 
-                <img class="prodpreimg" src="images/Kexchoklad.jpeg" alt="e">
-
-                <div class="prodinfo">
-                    <div class="prodname"><p class="pname">Product</p></div>
-
-                    <div class="prodremove"><button class="fa-solid fa-x"></button></div>
-
-                    <div class="prodprice"><p class="pprice">Price</p></div>
-
-                    <div class="prodamount">
-                        <div class="amountbtn"><button class="abtn">+</button></div>
-                        <div class="pamount"><p>0</p></div>
-                        <div class="amountbtn"><button class="abtn">-</button></div>
-                    </div>
-                </div>
-            </div>
+            ?>
             
         </div>
 
         <div id="mone">
 
-            <div class="moneinfo"><p>Total:</p><p id="mtottal"></p></div>
-
-            <div class="moneinfo"><p>Cash:</p><p id="mcash"></p></div>
-
-            <div class="moneinfo"><p>Return:</p><p id="mreturn"></p></div>
+            <div class="moneinfo"><?php
+            echo "<p>Total:</p>
+                <p id='mtottal'>$subtotal</p></div>";
+            ?>
 
         </div>
 
-        <div id="checkoutbtn"><button id="checkbtn" onclick="addProduct()">Checkout</button></div>
 
     </div>
+    <div class="flex prods">
+        <?php
+            getAllProducts();
+        ?>
+        </div>
+        <br><br>
         <?php
         include "livesearch.html";
-
-        require "config.php";
-            $prodsInCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
-            $prods = array();
-            $subtotal = 0.00;
-            $keys = array_keys($prodsInCart);
-            foreach($keys as $key){
-                $res = $conn->query("SELECT * FROM product WHERE name='$key'");
-                if($prodsInCart){
-                    $prod = mysqli_fetch_assoc($res);
-                    echo "<div class='orderProd'>
-                            <img src='".$prod['image']."' alt='Product Image'> 
-                            <h2>".$prod['name']."<h2>
-                            <span>".(float)$prod['price'].":- </span>
-                            <span>Amount: ".(int)$prodsInCart[$prod['name']]."</span>
-                        </div>";
-                    $subtotal += (float)$prod["price"] * (int)$prodsInCart[$prod['name']];
-                    
-                }
-            }
-                echo "$subtotal:-";
         ?>
 
-
+    <br><br><br>
         <div>
             <form action="#" method="POST">
                 <input type="radio" name="payment" value="0" id="swish">
@@ -109,8 +100,17 @@ function showResult(str) {
                 <input type="radio" name="payment" value="1" required id="cash">
                 <label for="cash">Cash payment</label>
                 <br>
+                <br>
+                <?php 
+                echo '<input type="number" disabled id="cashGet" min="'.round($subtotal).'" max="999999999999" placeholder="0" >';
+                ?>
+                <br>
+                <p id="return"></p>
+                <br>
+                <br>
                 <input type="submit" name="submit" value="Confirm Payment">
             </form>
+            <button onclick="getAmount()">Get Cash Return</button>
         </div>
 
 
@@ -172,6 +172,8 @@ function showResult(str) {
     ?>
     </div>
 
+    <script src="js/exchangeSystem.js"></script>
+    <script src="js/purchaseHandler.js"></script>
 <?php
     include "footer.php";
 ?>

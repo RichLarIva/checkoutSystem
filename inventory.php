@@ -14,7 +14,7 @@
     <?php include 'navbar.php'; ?>
         
     <div class="container">
-        <table>
+        <table class="inv-table">
             <thead>
                 <th>Product</th>
                 <th>ID</th>

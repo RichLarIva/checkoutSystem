@@ -21,7 +21,7 @@
     <div class="container">
 
         <div class="tab">
-            <!-- <button onclick="openTab(event, 'All')" class="tablinks active" id="defaultOpen">All</button> -->
+            <button onclick="openTab(event, 'All')" class="tablinks active" id="defaultOpen">All</button> 
             <button onclick="openTab(event, 'Godis')" class="tablinks active" id="defaultOpen">Godis</button>
             <button onclick="openTab(event, 'Chips')" class="tablinks">Chips</button>
             <button onclick="openTab(event, 'Dryck')" class="tablinks">Dryck</button>

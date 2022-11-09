@@ -299,6 +299,7 @@
     height: 5vh;
     margin: 1vh;
     margin-top: 1vh;
+    margin-bottom: 3vh;
     padding-top: 1vh;
     font-size: 2vh;
     background-color: white;
@@ -310,10 +311,12 @@
 
 }
 
-.update, .purchasebtn{
+.update, .add-to-cart{
     width: 28vh;
     height: 7vh;
-    margin: 1vh;
+    margin: 1vh 0.5vw 1vh 0.5vw;
+    padding: 2vh 8.2vh 2vh 8.2vh;
+    text-decoration: none;
     font-size: 2vh;
     transition: 0.25s;
     background-color: red;
@@ -322,13 +325,18 @@
     color: white;
 }
 
-.update:hover, .purchasebtn:hover{
+.update:hover, .add-to-cart:hover{
     background-color: darkred;
     cursor: pointer;
 }
 
 .productLink:hover{
     background-color: lightgray;
+}
+
+.categoryOfItem{
+    padding-top: 3vh;
+    text-align: center;
 }
 
 
@@ -345,6 +353,44 @@
     border-radius: 10px;
 }
 
+@media only screen and (max-width: 600px) {
+
+    .formcont {
+        width: 90vw;
+    }
+
+    .inv-table {
+        width: 90vw;
+    }
+
+    #checkout {
+        width: 60vw;
+    }
+
+    .prods {
+        width: 40vw;
+    }
+
+    .produkt {
+        width: 35vw;
+    }
+
+    .produktbild{
+        width: 33vw;
+        height: 33vw;
+        margin: 1vw;
+    }
+
+    .add-to-cart{
+        margin: 1.5vw;
+        padding: 2vw 1.5vh 2vw 1.5vh;
+    }
+}
+
+
+
+
+  
 .form-h1{
     margin-top: 5vh;
     text-align: center;
@@ -658,14 +704,12 @@ input:not(:invalid):not([type="submit"]){
 
 
 
-/* If the screen size is X wide or more, set the font-size of <div> to X */
 @media screen and (min-width: 601px) {
     .flex-lager {
       width: 100%;
     }
   }
   
-  /* If the screen size is X wide or less, set the font-size of <div> to X */
   @media screen and (max-width: 600px) {
     .flex-lager {
       font-size: 50%;
@@ -684,9 +728,6 @@ th,tr,td, .reginputbox{
     padding: 10px;
 }
 
-/* #bc, #add-date, #add-submit, .reginputbox{
-    float: right;
-} */
 
 .reginput{
     width: 90%;
@@ -700,4 +741,13 @@ th,tr,td, .reginputbox{
 
 #expDate::before{
     content:'Expiration date:';
+}
+
+#return{
+    width:50px;
+}
+
+#return img{
+    width:125px;
+    height:65px;
 }

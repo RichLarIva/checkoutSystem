@@ -1,25 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
--- This is the entire database
--- Host: localhost
--- Generation Time: Nov 08, 2022 at 11:23 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.1.6
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `shopDB`
---
+CREATE DATABASE IF NOT EXISTS `shopDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `shopDB`;
 
 -- --------------------------------------------------------
 
@@ -36,6 +17,9 @@ CREATE TABLE `Accounts` (
   `reg_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Table structure for table `item`
+--
 
 CREATE TABLE `item` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -43,8 +27,6 @@ CREATE TABLE `item` (
   `barcode` varchar(15) DEFAULT NULL,
   `bought` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `orders`
@@ -56,8 +38,6 @@ CREATE TABLE `orders` (
   `order_total` double(11,2) NOT NULL,
   `pay_type` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `order_item`
@@ -71,8 +51,6 @@ CREATE TABLE `order_item` (
   `item_qty` int(20) NOT NULL,
   `item_price` double(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `product`
@@ -141,19 +119,19 @@ ALTER TABLE `Accounts`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -177,8 +155,3 @@ ALTER TABLE `item`
 ALTER TABLE `order_item`
   ADD CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
   ADD CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`item_name`) REFERENCES `product` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

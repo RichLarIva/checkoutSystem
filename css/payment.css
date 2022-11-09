@@ -1,8 +1,10 @@
 #checkout{
+    position:fixed;
+    top:17vh;
+    right:0;
     width: 20%;
-    height: 80vh;
+    height: 83vh;
     background: linear-gradient(0deg, hsl(0, 0%, 70%), hsl(0, 0%, 80%));
-    float: right;
 }
 
 #productview{
@@ -10,6 +12,17 @@
     height: 70%;
     border-bottom: ridge gray 4px;
     overflow-y: scroll;
+}
+
+.flex{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.prods{
+    width:75vw;
 }
 
 .productpre{
