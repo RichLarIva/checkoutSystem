@@ -403,11 +403,12 @@ input:not(:invalid):not([type="submit"]){
 }
 
 .productHolder{
-    width: 83vw;
+    width: 100vw;
     height: auto;
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-around;
 
 }
 .product{
@@ -719,27 +720,43 @@ th,tr,td, .reginputbox{
         width: 30vw;
     }
 
-    .container{
-        width: 100%;;
+    .flexbod{
+        width: 100vw;;
     }
 
     .flexreport{
-        width: 90vh;
+        width: 100vh;
     }
 
     .reportbox{
         width: 50vw;
-        height: auto;
-        background-color: green;
+        height: auto;        
     }
 
     .orderTable{
-        width: 40vh;
+        width: 50vw;
     }
 
     .flex-lager {
         font-size: 50%;
       }
+
+    .regprod{
+        width: 40vw;
+        height: 70vw;
+    }
+
+    .regprodimg{
+        width: 30vw;
+        height: 30vw;
+        margin: auto;
+    }
+
+    .regproductdesc{
+        width: 38vw;
+        height: 20vw;
+    }
+
 }
 
 @media screen and (min-width: 601px) {
