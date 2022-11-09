@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report</title>
 </head>
-<body>
+<body class="flexbod">
     <?php include 'navbar.php'; ?>
-    <div class="container">
+    <div class="container flexconter">
 
         <div class="flexreport">
             <div class="reportbox">

@@ -113,9 +113,9 @@
             <button onclick="getAmount()">Get Cash Return</button>
         </div>
 
-
+            
     <?php
-    
+
     if(isset($_POST["submit"]) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])){
         $payType = $_POST["payment"];
         $conn->query("INSERT INTO orders (order_total, pay_type) VALUES('$subtotal', $payType)");

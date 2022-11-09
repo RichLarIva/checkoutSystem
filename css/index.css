@@ -386,7 +386,27 @@
         padding: 2vw 1.5vh 2vw 1.5vh;
     }
 
-    .pro
+    .productLink{
+        width: 30vw;
+    }
+
+    .container{
+        width: 100%;;
+    }
+
+    .flexreport{
+        width: 90vh;
+    }
+
+    .reportbox{
+        width: 50vw;
+        height: auto;
+        background-color: green;
+    }
+
+    .orderTable{
+        width: 40vh;
+    }
 }
 
 
